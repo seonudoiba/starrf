@@ -18,38 +18,38 @@ import Wishlist from "../Wishlist/Wishlist";
 import { RxCross1 } from "react-icons/rx";
 
 const Header = ({ activeHeading }) => {
-  const { isAuthenticated, user } = useSelector((state) => state.user);
-  const { isSeller } = useSelector((state) => state.seller);
-  const { wishlist } = useSelector((state) => state.wishlist);
-  const { cart } = useSelector((state) => state.cart);
-  const { allProducts } = useSelector((state) => state.products);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchData, setSearchData] = useState(null);
-  const [active, setActive] = useState(false);
-  const [dropDown, setDropDown] = useState(false);
-  const [openCart, setOpenCart] = useState(false);
-  const [openWishlist, setOpenWishlist] = useState(false);
-  const [open, setOpen] = useState(false);
+  // const { isAuthenticated, user } = useSelector((state) => state.user);
+  // const { isSeller } = useSelector((state) => state.seller);
+  // const { wishlist } = useSelector((state) => state.wishlist);
+  // const { cart } = useSelector((state) => state.cart);
+  // const { allProducts } = useSelector((state) => state.products);
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [searchData, setSearchData] = useState(null);
+  // const [active, setActive] = useState(false);
+  // const [dropDown, setDropDown] = useState(false);
+  // const [openCart, setOpenCart] = useState(false);
+  // const [openWishlist, setOpenWishlist] = useState(false);
+  // const [open, setOpen] = useState(false);
 
-  const handleSearchChange = (e) => {
-    const term = e.target.value;
-    setSearchTerm(term);
+  // const handleSearchChange = (e) => {
+  //   const term = e.target.value;
+  //   setSearchTerm(term);
 
-    const filteredProducts =
-      allProducts &&
-      allProducts.filter((product) =>
-        product.name.toLowerCase().includes(term.toLowerCase())
-      );
-    setSearchData(filteredProducts);
-  };
+  //   const filteredProducts =
+  //     allProducts &&
+  //     allProducts.filter((product) =>
+  //       product.name.toLowerCase().includes(term.toLowerCase())
+  //     );
+  //   setSearchData(filteredProducts);
+  // };
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 70) {
-      setActive(true);
-    } else {
-      setActive(false);
-    }
-  });
+  // window.addEventListener("scroll", () => {
+  //   if (window.scrollY > 70) {
+  //     setActive(true);
+  //   } else {
+  //     setActive(false);
+  //   }
+  // });
 
   return (
     <>
