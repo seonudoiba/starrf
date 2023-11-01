@@ -6,13 +6,10 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 app.use(cors());
-// origin: ['localhost/3000,],
+// origin: ['http://localhost:3000/',],
 // credentials: true
 app.use(express.json());
 app.use(cookieParser());
-app.use("/test", (req, res) => {
-  res.send("Hello world!");
-});
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
@@ -34,6 +31,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 // const conversation = require("./controller/conversation");
 // const message = require("./controller/message");
 // const withdraw = require("./controller/withdraw");
+const test = require("./route/test");
 
 
 // use routes
@@ -47,6 +45,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 // app.use("/api/v2/coupon", coupon);
 // app.use("/api/v2/payment", payment);
 // app.use("/api/v2/withdraw", withdraw);
+app.use("/", test);
 
 // it's for ErrorHandling
 app.use(ErrorHandler);
