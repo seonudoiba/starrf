@@ -5,7 +5,7 @@ import {
   LoginPage,
   SignupPage,
   //ActivationPage,
-  // HomePage,
+  HomePage,
   // ProductsPage,
   // BestSellingPage,
   // EventsPage,
@@ -41,7 +41,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignupPage />} />
       </Routes>
