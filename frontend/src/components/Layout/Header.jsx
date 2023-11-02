@@ -199,16 +199,16 @@ const Header = ({ activeHeading }) => {
                     {/* {`${active === index + 1 ? "text-yellow-300 " : "  text-yellow-400 "} 
                     flex items-center justify-center text-xl 800px:h-[50px] 
                     800px:pb-0 font-[500] px-4 cursor-pointer}`} */}
-                    {Data && Data.map(({title, dropdown,data}, index) => (
+                    {Data && Data.map((category, index) => (
                         <div key={index} onClick={() => toggleDropdown(index)} >
                             <div className="relative h-[60px] mt-[10px]  hidden 1000px:block">
                                 <button
                                     className={` w-full flex just items-center px-2 font-sans text-md 800px:h-[50px] font-[500] select-none rounded-t-md`}
                                 >
-                                    {title}
+                                    {category.title}
                                 </button>
-                                {dropdown ? (
-                                    <DropDown categoriesData={data} setDropDown={setDropDown} />
+                                {category.dropdown ? (
+                                    <DropDown categoriesData={category.data} setDropDown={setDropDown} />
                                 ) : null}
                             </div>
                         </div>
