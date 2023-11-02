@@ -635,7 +635,7 @@ export const categories = [
     {
       title: "Business",
       url: "/",
-      dropdown: true,
+      dropdown: false,
       data: [
         {
           id: 1,

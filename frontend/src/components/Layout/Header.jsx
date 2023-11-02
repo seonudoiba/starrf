@@ -20,10 +20,8 @@ import logo from "../../Assets/logo.png";
 
 const Header = ({ activeHeading }) => {
     const { isAuthenticated, user } = useSelector((state) => state.user);
-    //   const { isSeller } = useSelector((state) => state.seller);
-    const isSeller = false;
-    //const { wishlist } = useSelector((state) => state.wishlist);
-    const wishlist = [];
+    const { isSeller } = useSelector((state) => state.seller);
+    const { wishlist } = useSelector((state) => state.wishlist);
     //const { cart } = useSelector((state) => state.cart);
     const cart = [];
     //const { allProducts } = useSelector((state) => state.products);
@@ -90,7 +88,7 @@ const Header = ({ activeHeading }) => {
                     <div className="w-[22%] relative">
                         <input
                             type="text"
-                            placeholder="Search Product..."
+                            placeholder="Search Services..."
                             value={searchTerm}
                             onChange={handleSearchChange}
                             className="h-[40px] w-full px-2 border-[#3957db] border-[2px] rounded-md"
@@ -191,19 +189,19 @@ const Header = ({ activeHeading }) => {
                     </div>
                 </div>
             </div>
-            <div className = {`${active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
+            <div className = {`${active === true ? "shadow-sm bg-black fixed top-0 left-0 z-10" : null
                     } transition hidden 800px:flex items-center justify-between w-full border-y-2 h-[50px]`}
             >
-                <div className="flex justify-around items-center">
+                <div className="flex justify-center w-full items-center">
                     {/* categories */}
                     {/* {`${active === index + 1 ? "text-yellow-300 " : "  text-yellow-400 "} 
                     flex items-center justify-center text-xl 800px:h-[50px] 
                     800px:pb-0 font-[500] px-4 cursor-pointer}`} */}
                     {Data && Data.map((category, index) => (
                         <div key={index} onClick={() => toggleDropdown(index)} >
-                            <div className="relative h-[60px] mt-[10px]  hidden 1000px:block">
+                            <div className={`relative h-[60px] mt-[10px]   hidden 1000px:block`}>
                                 <button
-                                    className={` w-full flex just items-center px-2 font-sans text-md 800px:h-[50px] font-[500] select-none rounded-t-md`}
+                                    className={`${category.dropdown ? "border-b-4 border-yellow-400": ""}  w-full flex justify-center items-center px-2 font-sans text-md 800px:h-[50px] font-[500] select-none rounded-t-md`}
                                 >
                                     {category.title}
                                 </button>
