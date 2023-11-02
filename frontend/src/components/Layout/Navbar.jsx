@@ -8,9 +8,9 @@ const Navbar = ({active}) => {
     <div className={`block 800px:${styles.noramlFlex}`}>
          {
             navItems && navItems.map((i,index) => (
-                <div className="flex">
+                <div className="flex ">
                     <Link to={i.url}
-                    className={`${active === index + 1 ? "text-yellow-400 h-11/12 border rounded mx-3" : "bg-gray-100  text-yellow-400 "} pb-[30px]  800px:pb-0 font-[500] px-6 cursor-pointer}`}
+                    className={`${active === index + 1 ? "text-yellow-300 " : "  text-yellow-400 "} flex items-center justify-center text-xl 800px:h-[50px] 800px:pb-0 font-[500] px-4 cursor-pointer}`}
                     >
                     {i.title}
                     </Link>

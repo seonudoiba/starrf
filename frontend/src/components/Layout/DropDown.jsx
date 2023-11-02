@@ -11,12 +11,14 @@ const DropDown = ({ categoriesData, setDropDown }) => {
   };
   return (
     <div className="pb-4 w-[270px] bg-[#fff] absolute z-30 rounded-b-md shadow-sm">
+      {console.log(categoriesData)
+      }
       {categoriesData &&
         categoriesData.map((i, index) => (
           <div
             key={index}
             className={`${styles.noramlFlex}`}
-            onClick={() => submitHandle(i)}
+            onClick={() => submitHandle(i[0])}
           >
             <img
               src={i.image_Url}

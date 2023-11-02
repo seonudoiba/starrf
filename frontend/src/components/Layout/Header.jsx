@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
-import { categoriesData, productData } from "../../static/data";
+import { productData, categories } from "../../static/data";
 import {
     AiOutlineHeart,
     AiOutlineSearch,
@@ -32,9 +32,27 @@ const Header = ({ activeHeading }) => {
     const [searchData, setSearchData] = useState(null);
     const [active, setActive] = useState(false);
     const [dropDown, setDropDown] = useState(false);
+    const [Data, setData] = useState(categories);
+    //const [dropDownGraphics, setDropDownGraphics] = useState(false);
+    //const [dropDownProgramming, setDropDownProgramming] = useState(false);
     const [openCart, setOpenCart] = useState(false);
     const [openWishlist, setOpenWishlist] = useState(false);
     const [open, setOpen] = useState(false);
+
+
+  
+    const toggleDropdown = (index) => {
+        const updatedCategories = Data.map((category, i) => {
+          if (i === index) {
+            category.dropdown = !category.dropdown;
+          } else {
+            category.dropdown = false; // Close other dropdowns
+          }
+          return category;
+        });
+    
+        setData(updatedCategories);
+      };
 
     const handleSearchChange = (e) => {
         const term = e.target.value;
@@ -69,7 +87,7 @@ const Header = ({ activeHeading }) => {
                         </Link>
                     </div>
                     {/* search box */}
-                    <div className="w-[30%] relative">
+                    <div className="w-[22%] relative">
                         <input
                             type="text"
                             placeholder="Search Product..."
@@ -102,52 +120,13 @@ const Header = ({ activeHeading }) => {
                         ) : null}
                     </div>
                     {/* navitems */}
-                    <div className={`${styles.noramlFlex} w-[50%]`}>
+                    <div className={`${styles.noramlFlex} w-[40%] `}>
                         <Navbar active={activeHeading} />
                     </div>
-                    <div className={`${styles.button}`}>
-                        <Link to={`${isSeller ? "/dashboard" : "/shop-create"}`}>
-                            <h1 className="text-[#fff] flex items-center">
-                                {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
-                                <IoIosArrowForward className="ml-1" />
-                            </h1>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-            <div
-                className={`${active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
-                    } transition hidden 800px:flex items-center justify-between w-full bg-[#3321c8] h-[70px]`}
-            >
-                <div
-                    className={`${styles.section} relative ${styles.noramlFlex} justify-between`}
-                >
-                    {/* categories */}
-                    <div onClick={() => setDropDown(!dropDown)}>
-                        <div className="relative h-[60px] mt-[10px] w-[270px] hidden 1000px:block">
-                            <BiMenuAltLeft size={30} className="absolute top-3 left-2" />
-                            <button
-                                className={`h-[100%] w-full flex justify-between items-center pl-10 bg-white font-sans text-lg font-[500] select-none rounded-t-md`}
-                            >
-                                All Categories
-                            </button>
-                            <IoIosArrowDown
-                                size={20}
-                                className="absolute right-2 top-4 cursor-pointer"
-                                onClick={() => setDropDown(!dropDown)}
-                            />
-                            {dropDown ? (
-                                <DropDown
-                                    categoriesData={categoriesData}
-                                    setDropDown={setDropDown}
-                                />
-                            ) : null}
-                        </div>
-                    </div>
 
-
-                    <div className="flex">
-                        <div className={`${styles.noramlFlex}`}>
+                    {/* // icons */}
+                    <div className="flex justify-center bg-yellow-400 border rounded-md w-[12%]">
+                        <div className={`${styles.noramlFlex} font-bold flex justify-center  py-1.5 items-center`}>
                             <div
                                 className="relative cursor-pointer mr-[15px]"
                                 onClick={() => setOpenWishlist(true)}
@@ -159,7 +138,7 @@ const Header = ({ activeHeading }) => {
                             </div>
                         </div>
 
-                        <div className={`${styles.noramlFlex}`}>
+                        <div className={`${styles.noramlFlex} font-bold flex justify-center  py-1.5 items-center`}>
                             <div
                                 className="relative cursor-pointer mr-[15px]"
                                 onClick={() => setOpenCart(true)}
@@ -174,7 +153,7 @@ const Header = ({ activeHeading }) => {
                             </div>
                         </div>
 
-                        <div className={`${styles.noramlFlex}`}>
+                        <div className={`${styles.noramlFlex} font-bold flex justify-center  py-1.5 items-center`}>
                             <div className="relative cursor-pointer mr-[15px]">
                                 {isAuthenticated ? (
                                     <Link to="/profile">
@@ -200,6 +179,40 @@ const Header = ({ activeHeading }) => {
                             <Wishlist setOpenWishlist={setOpenWishlist} />
                         ) : null}
                     </div>
+
+                    {/* Become Seller */}
+                    <div className={`hover:bg-yellow-400 border rounded-md w-[12%]`}>
+                        <Link to={`${isSeller ? "/dashboard" : "/shop-create"}`}>
+                            <h3 className="text-yellow-400 hover:text-white font-bold flex justify-center text-md py-3 items-center">
+                                {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
+                                <IoIosArrowForward className="ml-1 " />
+                            </h3>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+            <div className = {`${active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
+                    } transition hidden 800px:flex items-center justify-between w-full border-y-2 h-[50px]`}
+            >
+                <div className="flex justify-around items-center">
+                    {/* categories */}
+                    {/* {`${active === index + 1 ? "text-yellow-300 " : "  text-yellow-400 "} 
+                    flex items-center justify-center text-xl 800px:h-[50px] 
+                    800px:pb-0 font-[500] px-4 cursor-pointer}`} */}
+                    {Data && Data.map(({title, dropdown,data}, index) => (
+                        <div key={index} onClick={() => toggleDropdown(index)} >
+                            <div className="relative h-[60px] mt-[10px]  hidden 1000px:block">
+                                <button
+                                    className={` w-full flex just items-center px-2 font-sans text-md 800px:h-[50px] font-[500] select-none rounded-t-md`}
+                                >
+                                    {title}
+                                </button>
+                                {dropdown ? (
+                                    <DropDown categoriesData={data} setDropDown={setDropDown} />
+                                ) : null}
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
 
@@ -232,7 +245,7 @@ const Header = ({ activeHeading }) => {
                             onClick={() => setOpenCart(true)}
                         >
                             <AiOutlineShoppingCart size={30} />
-                            <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
+                            <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
                                 {cart && cart.length}
                             </span>
                         </div>
@@ -257,7 +270,7 @@ const Header = ({ activeHeading }) => {
                                         onClick={() => setOpenWishlist(true) || setOpen(false)}
                                     >
                                         <AiOutlineHeart size={30} className="mt-5 ml-3" />
-                                        <span class="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
+                                        <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
                                             {wishlist && wishlist.length}
                                         </span>
                                     </div>
