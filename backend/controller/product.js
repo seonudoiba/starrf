@@ -1,7 +1,4 @@
 const express = require("express");
-const { isSeller, isAuthenticated, isAdmin } = require("../middleware/auth");
-const catchAsyncErrors = require("../middleware/catchAsyncErrors");
-const router = express.Router();
 const Product = require("../model/product");
 const Order = require("../model/order");
 const Shop = require("../model/shop");
@@ -9,9 +6,7 @@ const cloudinary = require("cloudinary");
 const ErrorHandler = require("../utils/ErrorHandler");
 
 // create product
-router.post(
-  "/create-product",
-  catchAsyncErrors(async (req, res, next) => {
+const createProduct = async (req, res, next) => {
     try {
       const shopId = req.body.shopId;
       const shop = await Shop.findById(shopId);
@@ -53,13 +48,10 @@ router.post(
     } catch (error) {
       return next(new ErrorHandler(error, 400));
     }
-  })
-);
+  }
 
 // get all products of a shop
-router.get(
-  "/get-all-products-shop/:id",
-  catchAsyncErrors(async (req, res, next) => {
+ const getShopProduct = async (req, res, next) => {
     try {
       const products = await Product.find({ shopId: req.params.id });
 
@@ -70,14 +62,10 @@ router.get(
     } catch (error) {
       return next(new ErrorHandler(error, 400));
     }
-  })
-);
+  }
 
 // delete product of a shop
-router.delete(
-  "/delete-shop-product/:id",
-  isSeller,
-  catchAsyncErrors(async (req, res, next) => {
+const deleteShopProduct = async (req, res, next) => {
     try {
       const product = await Product.findById(req.params.id);
 
@@ -100,13 +88,10 @@ router.delete(
     } catch (error) {
       return next(new ErrorHandler(error, 400));
     }
-  })
-);
+  }
 
 // get all products
-router.get(
-  "/get-all-products",
-  catchAsyncErrors(async (req, res, next) => {
+const getProducts = async (req, res, next) => {
     try {
       const products = await Product.find().sort({ createdAt: -1 });
 
@@ -117,14 +102,10 @@ router.get(
     } catch (error) {
       return next(new ErrorHandler(error, 400));
     }
-  })
-);
+  }
 
 // review for a product
-router.put(
-  "/create-new-review",
-  isAuthenticated,
-  catchAsyncErrors(async (req, res, next) => {
+const addReview = async (req, res, next) => {
     try {
       const { user, rating, comment, productId, orderId } = req.body;
 
@@ -174,15 +155,10 @@ router.put(
     } catch (error) {
       return next(new ErrorHandler(error, 400));
     }
-  })
-);
+  }
 
 // all products --- for admin
-router.get(
-  "/admin-all-products",
-  isAuthenticated,
-  isAdmin("Admin"),
-  catchAsyncErrors(async (req, res, next) => {
+const adminGetProducts = async (req, res, next) => {
     try {
       const products = await Product.find().sort({
         createdAt: -1,
@@ -194,6 +170,12 @@ router.get(
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
     }
-  })
-);
-module.exports = router;
+  }
+module.exports = {
+    createProduct,
+    getShopProduct,
+    deleteShopProduct,
+    getProducts,
+    addReview,
+    adminGetProducts,
+};
