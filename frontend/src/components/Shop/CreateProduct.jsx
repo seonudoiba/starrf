@@ -3,7 +3,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createProduct } from "../../redux/actions/product";
-import { categoriesData } from "../../static/data";
+import { categories } from "../../static/data";
 import { toast } from "react-toastify";
 
 const CreateProduct = () => {
@@ -127,8 +127,8 @@ const CreateProduct = () => {
             onChange={(e) => setCategory(e.target.value)}
           >
             <option value="Choose a category">Choose a category</option>
-            {categoriesData &&
-              categoriesData.map((i) => (
+            {categories &&
+              categories.map((i) => (
                 <option value={i.title} key={i.title}>
                   {i.title}
                 </option>

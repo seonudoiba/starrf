@@ -16,6 +16,7 @@ const ProductsPage = () => {
   useEffect(() => {
     if (categoryData === null) {
       const d = allProducts;
+      console.log("Products" + allProducts)
       setData(d);
     } else {
       const d =
@@ -28,7 +29,7 @@ const ProductsPage = () => {
   return (
   <>
   {
-    isLoading ? (
+    false ? (
       <Loader />
     ) : (
       <div>
@@ -38,6 +39,7 @@ const ProductsPage = () => {
       <div className={`${styles.section}`}>
         <div className="grid grid-cols-1 gap-[20px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-4 lg:gap-[25px] xl:grid-cols-5 xl:gap-[30px] mb-12">
           {data && data.map((i, index) => <ProductCard data={i} key={index} />)}
+         {console.log("dataaaaaaaaaaaaaaaaaaaaaaa" + data)  } 
         </div>
         {data && data.length === 0 ? (
           <h1 className="text-center w-full pb-[100px] text-[20px]">

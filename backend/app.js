@@ -25,6 +25,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 const user = require("./route/user");
 const shop = require("./route/shop");
 const product = require("./route/product");
+const order = require("./route/order")
 // const event = require("./controller/event");
 // const coupon = require("./controller/coupounCode");
 // const payment = require("./controller/payment");
@@ -39,7 +40,7 @@ const test = require("./route/test");
 app.use("/api/v2/user", user);
 // app.use("/api/v2/conversation", conversation);
 // app.use("/api/v2/message", message);
-// app.use("/api/v2/order", order);
+app.use("/api/v2/order", order);
 app.use("/api/v2/shop", shop);
 app.use("/api/v2/product", product);
 // app.use("/api/v2/event", event);
