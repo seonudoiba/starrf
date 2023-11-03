@@ -22,9 +22,8 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 }
 
 // import routes
-// const user = require("./controller/user");
 const user = require("./route/user");
-// const shop = require("./controller/shop");
+const shop = require("./route/shop");
 // const product = require("./controller/product");
 // const event = require("./controller/event");
 // const coupon = require("./controller/coupounCode");
@@ -41,7 +40,7 @@ app.use("/api/v2/user", user);
 // app.use("/api/v2/conversation", conversation);
 // app.use("/api/v2/message", message);
 // app.use("/api/v2/order", order);
-// app.use("/api/v2/shop", shop);
+app.use("/api/v2/shop", shop);
 // app.use("/api/v2/product", product);
 // app.use("/api/v2/event", event);
 // app.use("/api/v2/coupon", coupon);

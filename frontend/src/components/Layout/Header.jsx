@@ -189,10 +189,10 @@ const Header = ({ activeHeading }) => {
                     </div>
                 </div>
             </div>
-            <div className = {`${active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
+            <div className = {`${active === true ? "shadow-sm bg-white py-4 fixed top-0 left-0 z-10" : null
                     } transition hidden 800px:flex items-center justify-between w-full border-y-2 h-[50px]`}
             >
-                <div className="flex justify-center w-full items-center">
+                <div className="flex justify-around w-full items-center">
                     {/* categories */}
                     {/* {`${active === index + 1 ? "text-yellow-300 " : "  text-yellow-400 "} 
                     flex items-center justify-center text-xl 800px:h-[50px] 
@@ -201,12 +201,12 @@ const Header = ({ activeHeading }) => {
                         <div key={index} onClick={() => toggleDropdown(index)} >
                             <div className={`relative h-[60px] mt-[10px]   hidden 1000px:block`}>
                                 <button
-                                    className={`${category.dropdown ? "border-b-4 border-yellow-400": ""}  w-full flex justify-center items-center px-2 font-sans text-md 800px:h-[50px] font-[500] select-none rounded-t-md`}
+                                    className={`${category.dropdown ? "border-b-4 border-yellow-400": ""} hover:border-b-4 hover:border-yellow-400  w-full flex justify-center items-center px-2 font-sans text-md 800px:h-[50px] font-[500] select-none rounded-t-md`}
                                 >
                                     {category.title}
                                 </button>
                                 {category.dropdown ? (
-                                    <DropDown categoriesData={category.data} setDropDown={setDropDown} />
+                                    <DropDown categoriesData={category.data} setDropDown={category.dropdown} />
                                 ) : null}
                             </div>
                         </div>
