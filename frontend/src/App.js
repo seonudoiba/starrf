@@ -7,19 +7,19 @@ import {
   SignupPage,
   ActivationPage,
   ProductsPage,
-  // BestSellingPage,
-  // EventsPage,
-  // FAQPage,
-  // CheckoutPage,
-  // PaymentPage,
-  // OrderSuccessPage,
+  BestSellingPage,
+  EventsPage,
+  FAQPage,
+  CheckoutPage,
+  //PaymentPage,
+  OrderSuccessPage,
   ProductDetailsPage,
-  // ProfilePage,
+  ProfilePage,
   ShopCreatePage,
   SellerActivationPage,
   ShopLoginPage,
-  // OrderDetailsPage,
-  // TrackOrderPage,
+  OrderDetailsPage,
+  TrackOrderPage,
   // UserInbox,
 } from "./routes/Routes.js";
 
@@ -91,7 +91,51 @@ const App = () => {
         />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/product/:id" element={<ProductDetailsPage />} />
-      
+        <Route path="/best-selling" element={<BestSellingPage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/faq" element={<FAQPage />} />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <CheckoutPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/order/success" element={<OrderSuccessPage />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        {/* <Route
+          path="/inbox"
+          element={
+            <ProtectedRoute>
+              <UserInbox />
+            </ProtectedRoute>
+          }
+        /> */}
+        <Route
+          path="/user/order/:id"
+          element={
+            <ProtectedRoute>
+              <OrderDetailsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/track/order/:id"
+          element={
+            <ProtectedRoute>
+              <TrackOrderPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/shop/preview/:id" element={<ShopPreviewPage />} />
 
         {/* shop Routes */}
         <Route path="/shop-create" element={<ShopCreatePage />} />
@@ -120,7 +164,7 @@ const App = () => {
             </SellerProtectedRoute>
           }
         />
-        {/* <Route
+         <Route
           path="/dashboard-create-product"
           element={
             <SellerProtectedRoute>
@@ -201,7 +245,7 @@ const App = () => {
             </SellerProtectedRoute>
           } 
         />
-        */}
+    
        
 
       </Routes>
