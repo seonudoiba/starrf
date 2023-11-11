@@ -25,7 +25,10 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 const user = require("./route/user");
 const shop = require("./route/shop");
 const product = require("./route/product");
-const order = require("./route/order")
+const order = require("./route/order");
+const event = require("./route/event");
+const coupon = require("./route/couponCode");
+const withdraw = require("./route/withdraw");
 // const event = require("./controller/event");
 // const coupon = require("./controller/coupounCode");
 // const payment = require("./controller/payment");
@@ -43,10 +46,10 @@ app.use("/api/v2/user", user);
 app.use("/api/v2/order", order);
 app.use("/api/v2/shop", shop);
 app.use("/api/v2/product", product);
-// app.use("/api/v2/event", event);
-// app.use("/api/v2/coupon", coupon);
+app.use("/api/v2/event", event);
+app.use("/api/v2/coupon", coupon);
+app.use("/api/v2/withdraw", withdraw);
 // app.use("/api/v2/payment", payment);
-// app.use("/api/v2/withdraw", withdraw);
 app.use("/", test);
 
 // it's for ErrorHandling

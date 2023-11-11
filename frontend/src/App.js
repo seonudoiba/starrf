@@ -29,7 +29,7 @@ import {
   ShopAllProducts,
   ShopCreateEvents,
   ShopAllEvents,
-  ShopAllCoupouns,
+  ShopAllCoupons,
   ShopPreviewPage,
   ShopAllOrders,
   ShopOrderDetails,
@@ -222,10 +222,10 @@ const App = () => {
           }
         />
         <Route
-          path="/dashboard-coupouns"
+          path="/dashboard-coupons"
           element={
             <SellerProtectedRoute>
-              <ShopAllCoupouns />
+              <ShopAllCoupons />
             </SellerProtectedRoute>
           }
         />
