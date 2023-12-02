@@ -1,0 +1,77 @@
+.home-header-gradient {
+    width: 100%;
+    max-width: 90rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+.home-header_image-wrapper {
+    width: 100%;
+    max-width: 90rem;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+.home-header_image {
+    width: 100%;
+}
+img {
+    max-width: 100%;
+    vertical-align: middle;
+    display: inline-block;
+}
+.left-hand_wrapper {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+}
+
+.home-righthand, .home-lefthand {
+    width: auto;
+    height: 100%;
+    position: static;
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+}
+.right-hand_wrapper {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    display: flex;
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: auto;
+    right: 0%;
+}
+.gradient-right {
+    width: 16rem;
+    background-image: linear-gradient(90deg,rgba(255,255,255,0),#fff);
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: auto;
+    right: 0%;
+}
+.gradient-left {
+    width: 16rem;
+    background-image: linear-gradient(90deg,#fff,rgba(255,255,255,0));
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+}
